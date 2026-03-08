@@ -20,3 +20,13 @@ setTimeout(showSlides, 4000);
 }
 
 showSlides();
+
+
+
+function toggleMenu(){
+
+  let nav = document.getElementById("navLinks");
+  
+  nav.classList.toggle("active");
+  
+  }
