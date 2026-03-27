@@ -16,6 +16,10 @@
 
     <div class="nav-right">
     <h2>Intii Jeweleries</h2>
+    <div class="cart-icon" onclick="toggleCart()">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="cart-count">0</span>
+    </div>
     </div>
     
     <div class="menu-icon" onclick="toggleMenu()">
@@ -26,7 +30,7 @@
     
     <a href="#">Home</a>
     <a href="#">About</a>
-    <a href="#">Shop</a>
+    <a href="shop.html">Shop</a>
     <a href="#">Contacts</a>
     
     <div class="social-icons" style="text-align:right;">
@@ -37,6 +41,18 @@
     </div>
     
     </div>
+
+    <div class="cart-drawer" id="cartDrawer">
+
+        <h2>Your Cart</h2>
+        
+        <div id="cart-items"></div>
+        
+        <p class="cart-total">Total: $<span id="cart-total">0</span></p>
+        
+        <button class="checkout-btn">Checkout</button>
+        
+        </div>
     
     </nav>
 
@@ -132,9 +148,9 @@ to stand out.
     
     <p class="price">$120</p>
     
-    <button class="add-cart">
-    <i class="fas fa-shopping-cart"></i> Add to Cart
-    </button>
+    <button class="add-cart" onclick="addToCart('Gold Ring', 120)">
+        <i class="fas fa-shopping-cart"></i> Add to Cart
+        </button>
     
     </div>
     
@@ -167,9 +183,9 @@ to stand out.
       
       <p class="price">$90</p>
       
-      <button class="add-cart">
-      <i class="fas fa-shopping-cart"></i> Add to Cart
-      </button>
+      <button class="add-cart" onclick="addToCart('Gold Necklace', 90)">
+        <i class="fas fa-shopping-cart"></i> Add to Cart
+        </button>
       
       </div>
       
@@ -202,9 +218,9 @@ to stand out.
         
         <p class="price">$65</p>
         
-        <button class="add-cart">
-        <i class="fas fa-shopping-cart"></i> Add to Cart
-        </button>
+        <button class="add-cart" onclick="addToCart('Gold Accesories', 65)">
+            <i class="fas fa-shopping-cart"></i> Add to Cart
+            </button>
         
         </div>
         
@@ -237,9 +253,9 @@ to stand out.
           
           <p class="price">$70</p>
           
-          <button class="add-cart">
-          <i class="fas fa-shopping-cart"></i> Add to Cart
-          </button>
+          <button class="add-cart" onclick="addToCart('Pearl Earings', 70)">
+            <i class="fas fa-shopping-cart"></i> Add to Cart
+            </button>
           
           </div>
           
@@ -247,7 +263,7 @@ to stand out.
 
 </div>
 
-<button class="add-cart" href="#">View More ></button>
+<button class="add-cart" href="shop.html">View More ></button>
 
 </section>
 
