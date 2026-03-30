@@ -21,7 +21,55 @@ setTimeout(showSlides, 4000);
 
 showSlides();
 
+function loadFeaturedProducts(){
 
+  fetch("get_products.php")
+  .then(res => res.json())
+  .then(data => {
+  
+  let container = document.getElementById("featured-products");
+  container.innerHTML = "";
+  
+  // LIMIT to 4 products
+  let featured = data.slice(0,4);
+  
+  featured.forEach(product => {
+  
+  let finalPrice = product.discount > 0
+  ? product.price - (product.price * product.discount / 100)
+  : product.price;
+  
+  container.innerHTML += `
+  <div class="product-card">
+  
+  <div class="product-image">
+  <img src="${product.image}">
+  ${product.discount > 0 ? `<div class="badge">-${product.discount}%</div>` : ""}
+  </div>
+  
+  <div class="product-info">
+  
+  <h3>${product.name}</h3>
+  
+  <p class="price">
+  ${product.discount > 0
+  ? `<span class="old-price">$${product.price}</span> $${finalPrice}`
+  : `$${product.price}`}
+  </p>
+  
+  <button class="add-cart" onclick="addToCart('${product.name}', ${finalPrice})">
+  Add to Cart
+  </button>
+  
+  </div>
+  
+  </div>
+  `;
+  
+  });
+  
+  });
+  }
 
 function toggleMenu(){
 

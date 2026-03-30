@@ -1,3 +1,6 @@
+CREATE DATABASE IF NOT EXISTS jewelry_store;
+USE jewelry_store;
+
 CREATE DATABASE jewelry_store;
 
 USE jewelry_store;
@@ -12,3 +15,5 @@ CREATE TABLE products (
     image TEXT,
     rating INT DEFAULT 4
 );
+
+ALTER TABLE products ADD featured BOOLEAN DEFAULT 0;

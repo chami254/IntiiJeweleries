@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intii Jeweleries</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+    
+
+        <div class="nav-right">
+        <h2>Intii Jeweleries</h2>
+        <div class="cart-icon" onclick="toggleCart()">
+            <i class="fas fa-shopping-cart"></i>
+            <span id="cart-count">0</span>
+        </div>
+        </div>
+        
+        <div class="menu-icon" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+        </div>
+        
+        <div class="nav-left" id="navLinks">
+        
+        <a href="#">Home</a>
+        <a href="#about">About</a>
+        <a href="shop.html">Shop</a>
+        <a href="contact.html">Contacts</a>
+        
+        <div class="social-icons" style="text-align:right;">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+        
+        </div>
+
+        <div class="cart-drawer" id="cartDrawer">
+
+            <h2>Your Cart</h2>
+            
+            <div id="cart-items"></div>
+            
+            <p class="cart-total">Total: $<span id="cart-total">0</span></p>
+            
+            <button class="checkout-btn">Checkout</button>
+            
+        </div>
+        
+    </nav>
+
+
+    <div class="container">
+        <h2>Contact Us</h2>
+        <form action="send_email.php" method="POST">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</body>
+</html>

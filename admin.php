@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +15,26 @@
 
 <body>
 
+<!-- LOGIN POPUP -->
+<div class="login-modal" id="loginModal">
+
+<div class="login-box">
+
+<h2>Admin Login</h2>
+
+<input type="text" id="username" placeholder="Username">
+<input type="password" id="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+<p id="login-error"></p>
+
+</div>
+
+</div>
+
 <h1>Admin Dashboard</h1>
+<button onclick="logout()" style="position: fixed;">Logout</button>
 
 <!-- ADD PRODUCT FORM -->
 
@@ -27,6 +48,8 @@
 <input type="number" id="stock" placeholder="Stock Quantity">
 <input type="number" id="discount" placeholder="Discount %">
 <input type="file" id="image">
+
+<input type="hidden" id="editIdField">
 
 <button onclick="addProduct()">Add Product</button>
 

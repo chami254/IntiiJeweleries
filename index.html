@@ -29,9 +29,9 @@
     <div class="nav-left" id="navLinks">
     
     <a href="#">Home</a>
-    <a href="#">About</a>
+    <a href="#about">About</a>
     <a href="shop.html">Shop</a>
-    <a href="#">Contacts</a>
+    <a href="contact.html">Contacts</a>
     
     <div class="social-icons" style="text-align:right;">
     <a href="#"><i class="fab fa-instagram"></i></a>
@@ -88,7 +88,7 @@
 
 
 <!-- ABOUT SECTION -->
-<section class="about">
+<section id="#about" class="about">
 
 <div class="about-text">
 <h2>- About Intii Jeweleries-</h2>
@@ -116,7 +116,10 @@ to stand out.
 
 
 <!-- FEATURED PRODUCTS -->
-<section class="products">
+ <script>
+    loadFeaturedProducts();
+ </script>
+<section class="products" id="featured-products">
 
 <h2>- Featured Products -</h2>
 
@@ -263,7 +266,7 @@ to stand out.
 
 </div>
 
-<button class="add-cart" href="shop.html">View More ></button>
+<button class="add-cart"><a href="shop.html" style="color:aliceblue; text-decoration: none;">View More ></a></button>
 
 </section>
 
