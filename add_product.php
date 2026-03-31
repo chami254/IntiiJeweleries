@@ -14,12 +14,16 @@ $folder = "uploads/" . $imageName;
 
 move_uploaded_file($tempName, $folder);
 
-$sql = "INSERT INTO products (name, price, category, stock, discount, image)
-VALUES ('$name', '$price', '$category', '$stock', '$discount', '$folder')";
+$featured = $_POST["featured"];
 
-if ($conn->query($sql) === TRUE) {
+$stmt = $conn->prepare("INSERT INTO products (name, price, category, stock, discount, image, featured) VALUES (?, ?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("sdsiiss", $name, $price, $category, $stock, $discount, $folder, $featured);
+
+if ($stmt->execute()) {
     echo "Product added";
 } else {
-    echo "Error: " . $conn->error;
+    echo "Error: " . $stmt->error;
 }
+
+$stmt->close();
 ?>

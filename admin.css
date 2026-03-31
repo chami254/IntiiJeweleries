@@ -114,3 +114,94 @@ body{
   padding:5px 10px;
   cursor:pointer;
   }
+  
+  .admin-item-image{
+  width:80px;
+  height:80px;
+  overflow:hidden;
+  border-radius:8px;
+  }
+  
+  .admin-item-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  }
+  
+  .admin-item-details{
+  flex:1;
+  padding:0 15px;
+  }
+  
+  .admin-item-details h3{
+  margin:0 0 5px 0;
+  font-size:16px;
+  }
+  
+  .admin-item-category{
+  color:#666;
+  font-size:12px;
+  margin:0 0 5px 0;
+  text-transform:capitalize;
+  }
+  
+  .admin-item-price{
+  margin:5px 0;
+  }
+  
+  .admin-item-price .old-price{
+  text-decoration:line-through;
+  color:#999;
+  font-size:14px;
+  margin-right:5px;
+  }
+  
+  .admin-item-price .final-price{
+  font-weight:bold;
+  font-size:16px;
+  color:#111;
+  }
+  
+  .admin-item-stock{
+  font-size:12px;
+  color:green;
+  margin:5px 0;
+  }
+  
+  .admin-item-stock.out{
+  color:red;
+  }
+  
+  .admin-item-discount{
+  font-size:12px;
+  color:#e74c3c;
+  margin:5px 0;
+  }
+  
+  .admin-item-featured{
+  font-size:12px;
+  color:#f39c12;
+  margin:5px 0;
+  }
+  
+  .admin-item-actions{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+  }
+  
+  .edit-btn{
+  background:#3498db !important;
+  }
+  
+  .edit-btn:hover{
+  background:#2980b9 !important;
+  }
+  
+  .delete-btn{
+  background:#e74c3c !important;
+  }
+  
+  .delete-btn:hover{
+  background:#c0392b !important;
+  }

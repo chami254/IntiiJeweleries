@@ -85,6 +85,7 @@ function toggleMenu(){
   // TOGGLE CART
   function toggleCart(){
   document.getElementById("cartDrawer").classList.toggle("open");
+  document.getElementById("cartOverlay").classList.toggle("active");
   }
   
   // ADD TO CART
@@ -161,5 +162,18 @@ function toggleMenu(){
   // REMOVE ITEM
   function removeItem(index){
   cart.splice(index,1);
+  updateCart();
+  }
+  
+  // CHECKOUT
+  function checkout(){
+  if(cart.length === 0){
+  alert("Your cart is empty!");
+  return;
+  }
+  
+  let total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  alert(`Checkout total: ${total}\n\nThank you for your order!`);
+  cart = [];
   updateCart();
   }

@@ -6,6 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Intii Jeweleries</title>
 <link rel="stylesheet" href="style.css">
+<script 
+  src="https://www.paypal.com/sdk/js?client-id=BAAmR5nFiHzt107_Hz7d8KgXxYvv1F2mRIXWg7P1RfQ3R64-8sK_L2vYpt2H6atuj9qC_kBdhcpvMekkDE&components=hosted-buttons&disable-funding=venmo&currency=USD">
+</script>
 </head>
 
 <body>
@@ -42,6 +45,8 @@
     
     </div>
 
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    
     <div class="cart-drawer" id="cartDrawer">
 
         <h2>Your Cart</h2>
@@ -50,7 +55,7 @@
         
         <p class="cart-total">Total: $<span id="cart-total">0</span></p>
         
-        <button class="checkout-btn">Checkout</button>
+        <button class="checkout-btn" onclick="checkout()">Checkout</button>
         
         </div>
     
@@ -88,7 +93,7 @@
 
 
 <!-- ABOUT SECTION -->
-<section id="#about" class="about">
+<section id="about" class="about">
 
 <div class="about-text">
 <h2>- About Intii Jeweleries-</h2>
@@ -116,9 +121,7 @@ to stand out.
 
 
 <!-- FEATURED PRODUCTS -->
- <script>
-    loadFeaturedProducts();
- </script>
+
 <section class="products" id="featured-products">
 
 <h2>- Featured Products -</h2>

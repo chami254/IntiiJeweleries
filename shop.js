@@ -1,34 +1,5 @@
-let products = [
-  {
-  name:"Gold Ring",
-  price:120,
-  category:"rings",
-  image:"images/ring.jpg",
-  rating:4,
-  stock:5,
-  discount:20
-  },
-  {
-  name:"Silver Necklace",
-  price:90,
-  category:"necklaces",
-  image:"images/necklace.jpg",
-  rating:5,
-  stock:0,
-  discount:0
-  },
-  {
-  name:"Bracelet",
-  price:60,
-  category:"bracelets",
-  image:"images/bracelet.jpg",
-  rating:3,
-  stock:8,
-  discount:10
-  }
-  ];
-  
-  let filteredProducts = [...products];
+let products = [];
+  let filteredProducts = [];
   
   // DISPLAY PRODUCTS
   function displayProducts(){
@@ -73,8 +44,8 @@ let products = [
     
     <p class="price">
     ${product.discount > 0
-    ? `<span class="old-price">$${product.price}</span> $${finalPrice}`
-    : `$${product.price}`}
+    ? `<span class="old-price">${product.price}</span> ${finalPrice}`
+    : `${product.price}`}
     </p>
     
     <p class="stock ${product.stock === 0 ? "out" : ""}">
@@ -97,6 +68,17 @@ let products = [
     
     });
     
+    }
+    
+    // LOAD PRODUCTS FROM DATABASE
+    function loadProducts(){
+    fetch("get_products.php")
+    .then(res => res.json())
+    .then(data => {
+    products = data;
+    filteredProducts = [...products];
+    displayProducts();
+    });
     }
   
   // SEARCH
@@ -142,3 +124,105 @@ let products = [
   
   // INITIAL LOAD
   displayProducts();
+
+  // CART FUNCTIONALITY
+  let cart = [];
+  
+  // TOGGLE CART
+  function toggleCart(){
+  document.getElementById("cartDrawer").classList.toggle("open");
+  document.getElementById("cartOverlay").classList.toggle("active");
+  }
+  
+  // ADD TO CART
+  function addToCart(name, price){
+  
+  let existing = cart.find(item => item.name === name);
+  
+  if(existing){
+  existing.quantity += 1;
+  } else {
+  cart.push({name, price, quantity:1});
+  }
+  
+  updateCart();
+  
+  }
+  
+  // UPDATE CART UI
+  function updateCart(){
+  
+  let cartItems = document.getElementById("cart-items");
+  let cartCount = document.getElementById("cart-count");
+  let cartTotal = document.getElementById("cart-total");
+  
+  cartItems.innerHTML = "";
+  
+  let total = 0;
+  
+  cart.forEach((item, index) => {
+  
+  total += item.price * item.quantity;
+  
+  cartItems.innerHTML += `
+  <div class="cart-item">
+  
+  <div>
+  <strong>${item.name}</strong>
+  <br>
+  <small>${item.price}</small>
+  </div>
+  
+  <div class="cart-controls">
+  
+  <button onclick="changeQty(${index}, -1)">-</button>
+  <span>${item.quantity}</span>
+  <button onclick="changeQty(${index}, 1)">+</button>
+  
+  <button class="remove" onclick="removeItem(${index})">✕</button>
+  
+  </div>
+  
+  </div>
+  `;
+  });
+  
+  cartCount.innerText = cart.length;
+  cartTotal.innerText = total;
+  
+  }
+  
+  // CHANGE QUANTITY
+  function changeQty(index, amount){
+  
+  cart[index].quantity += amount;
+  
+  if(cart[index].quantity <= 0){
+  cart.splice(index,1);
+  }
+  
+  updateCart();
+  
+  }
+  
+  // REMOVE ITEM
+  function removeItem(index){
+  cart.splice(index,1);
+  updateCart();
+  }
+  
+  // CHECKOUT
+  function checkout(){
+  if(cart.length === 0){
+  alert("Your cart is empty!");
+  return;
+  }
+  
+  let total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  alert(`Checkout total: ${total}\n\nThank you for your order!`);
+  cart = [];
+  updateCart();
+  }
+  
+  // INITIAL LOAD
+  loadProducts();

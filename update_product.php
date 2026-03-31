@@ -9,6 +9,7 @@ $stock = $_POST["stock"];
 $discount = $_POST["discount"];
 
 $imagePath = "";
+$imageParam = "";
 
 // CHECK IF IMAGE UPLOADED
 if(isset($_FILES["image"]) && $_FILES["image"]["name"] != ""){
@@ -20,21 +21,23 @@ if(isset($_FILES["image"]) && $_FILES["image"]["name"] != ""){
 
     move_uploaded_file($tempName, $folder);
 
-    $imagePath = ", image='$folder'";
+    $imagePath = ", image=?";
+    $imageParam = $folder;
 }
 
-$sql = "UPDATE products 
-SET name='$name',
-price='$price',
-category='$category',
-stock='$stock',
-discount='$discount'
-$imagePath
-WHERE id=$id";
+if($imagePath != ""){
+    $stmt = $conn->prepare("UPDATE products SET name=?, price=?, category=?, stock=?, discount=? $imagePath WHERE id=?");
+    $stmt->bind_param("sdsiissi", $name, $price, $category, $stock, $discount, $imageParam, $id);
+} else {
+    $stmt = $conn->prepare("UPDATE products SET name=?, price=?, category=?, stock=?, discount=? WHERE id=?");
+    $stmt->bind_param("sdsiisi", $name, $price, $category, $stock, $discount, $id);
+}
 
-if ($conn->query($sql) === TRUE) {
+if ($stmt->execute()) {
     echo "Updated";
 } else {
     echo "Error";
 }
+
+$stmt->close();
 ?>

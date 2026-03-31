@@ -19,19 +19,10 @@ function loadProducts(){
   });
   
   });
-  loadProducts();
 
-let products = [];
+}
 
-fetch("get_products.php")
-.then(res => res.json())
-.then(data => {
-products = data;
-filteredProducts = [...products];
-displayProducts();
-});
-  }
-
+  
 // CHECK AUTH ON LOAD
 window.onload = function(){
 
@@ -104,6 +95,9 @@ function addProduct(){
   if(imageFile){
   formData.append("image", imageFile);
   }
+
+  formData.append("featured",
+    document.getElementById("featured").checked ? 1 : 0);
   
   let url = localEditId ? "update_product.php" : "add_product.php";
   
@@ -126,8 +120,11 @@ function addProduct(){
   document.getElementById("category").value = "";
   document.getElementById("stock").value = "";
   document.getElementById("discount").value = "";
-  
-  loadProducts(); 
+
+
+  setTimeout(() => {
+    loadProducts();
+    }, 300); 
   
   });
   
@@ -155,19 +152,43 @@ let container = document.getElementById("admin-products");
 
 container.innerHTML = "";
 
-products.forEach((p, index) => {
+fetch("get_products.php")
+.then(res => res.json())
+.then(data => {
+
+data.forEach((p, index) => {
+
+let finalPrice = p.discount > 0
+? p.price - (p.price * p.discount / 100)
+: p.price;
 
 container.innerHTML += `
 <div class="admin-item">
-<div>
-<strong>${p.name}</strong> - $${p.price}
-<br>
-<small>${p.category} | Stock: ${p.stock} | Discount: ${p.discount}%</small>
+<div class="admin-item-image">
+<img src="${p.image}" alt="${p.name}">
 </div>
-
-<button onclick="deleteProduct(${index})">Delete</button>
+<div class="admin-item-details">
+<h3>${p.name}</h3>
+<p class="admin-item-category">${p.category}</p>
+<div class="admin-item-price">
+${p.discount > 0
+? `<span class="old-price">${p.price}</span> <span class="final-price">${finalPrice}</span>`
+: `<span class="final-price">${p.price}</span>`}
+</div>
+<div class="admin-item-stock ${p.stock === 0 ? 'out' : ''}">
+${p.stock > 0 ? `In Stock: ${p.stock}` : 'Out of Stock'}
+</div>
+${p.discount > 0 ? `<div class="admin-item-discount">Discount: ${p.discount}%</div>` : ''}
+${p.featured == 1 ? `<div class="admin-item-featured">⭐ Featured</div>` : ''}
+</div>
+<div class="admin-item-actions">
+<button class="edit-btn" onclick='editProduct(${JSON.stringify(p).replace(/'/g, "\'")})'>Edit</button>
+<button class="delete-btn" onclick="deleteProduct(${p.id})">Delete</button>
+</div>
 </div>
 `;
+
+});
 
 });
 
@@ -200,6 +221,3 @@ function clearForm(){
   
   }
 
-  window.onload = function(){
-    loadProducts();
-    };

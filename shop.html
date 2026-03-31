@@ -33,7 +33,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
   
   <div class="nav-left" id="navLinks">
   
-  <a href="#">Home</a>
+  <a href="index.html">Home</a>
   <a href="#about">About</a>
   <a href="shop.html">Shop</a>
   <a href="contact.html">Contacts</a>
@@ -47,6 +47,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
   
   </div>
 
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+  
   <div class="cart-drawer" id="cartDrawer">
 
       <h2>Your Cart</h2>
@@ -55,7 +57,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
       
       <p class="cart-total">Total: $<span id="cart-total">0</span></p>
       
-      <button class="checkout-btn">Checkout</button>
+      <button class="checkout-btn" onclick="checkout()">Checkout</button>
       
       </div>
   
@@ -76,6 +78,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 <option value="rings">Rings</option>
 <option value="necklaces">Necklaces</option>
 <option value="bracelets">Bracelets</option>
+<option value="earrings">Earrings</option>
 </select>
 
 <select id="sort">

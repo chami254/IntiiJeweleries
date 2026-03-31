@@ -44,13 +44,21 @@
 
 <input type="text" id="name" placeholder="Product Name">
 <input type="number" id="price" placeholder="Price">
-<input type="text" id="category" placeholder="Category (rings, necklaces...)">
+<select id="category">
+<option value="">Select Category</option>
+<option value="rings">Rings</option>
+<option value="necklaces">Necklaces</option>
+<option value="bracelets">Bracelets</option>
+<option value="earrings">Earrings</option>
+</select>
 <input type="number" id="stock" placeholder="Stock Quantity">
 <input type="number" id="discount" placeholder="Discount %">
 <input type="file" id="image">
+<label>
+<input type="checkbox" id="featured"> Featured Product
+</label>
 
 <input type="hidden" id="editIdField">
-
 <button onclick="addProduct()">Add Product</button>
 
 </div>
